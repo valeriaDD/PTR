@@ -18,4 +18,13 @@ object NumberUtils {
 
     100 * digits.head + 10 * digits(1) + digits(2)
   }
+
+  def listRightAngleTriangles(): List[(Int, Int, Int)] = {
+    for {
+      a <- 1 to 20
+      b <- 1 to 20
+      c <- 1 to 70
+      if a * a + b * b == c * c
+    } yield (a, b, c)
+  }.toList
 }

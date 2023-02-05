@@ -22,4 +22,11 @@ class NumberUtilsTest extends AnyFunSuite {
     val actual = NumberUtils.createSmallestNumber(0, 1, 9)
     assert(expected == actual)
   }
+
+  test("Get tuples where a^2 + b^2 = c^2") {
+    val rightAngle = (3,4,5)
+    val tuplesList = NumberUtils.listRightAngleTriangles();
+    
+    assert(tuplesList.contains(rightAngle))
+  }
 }
