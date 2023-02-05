@@ -1,6 +1,6 @@
 import org.scalatest.funsuite.AnyFunSuite
 
-class HelloWorldTest extends AnyFunSuite {
+class GreetingsTest extends AnyFunSuite {
   test("Hello, PTR! should be printed") {
     val consoleOutput = new java.io.ByteArrayOutputStream()
     Console.withOut(consoleOutput) {
