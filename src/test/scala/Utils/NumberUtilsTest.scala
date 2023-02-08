@@ -24,9 +24,29 @@ class NumberUtilsTest extends AnyFunSuite {
   }
 
   test("Get tuples where a^2 + b^2 = c^2") {
-    val rightAngle = (3,4,5)
+    val rightAngle = (3, 4, 5)
     val tuplesList = NumberUtils.listRightAngleTriangles();
-    
+
     assert(tuplesList.contains(rightAngle))
+  }
+
+  test("Number factorization of prime") {
+    val number = 13
+    val expected = List(13)
+
+    val actual = NumberUtils.primeFactorization(13)
+
+    assert(expected.size == actual.size, "Lists have different sizes")
+    assert(expected.zip(actual).forall(t => t._1 == t._2), "Lists have different elements")
+  }
+
+  test("Number factorization of number") {
+    val number = 42
+    val expected = List(7, 3, 2)
+
+    val actual = NumberUtils.primeFactorization(42)
+
+    assert(expected.size == actual.size, "Lists have different sizes")
+    assert(expected.zip(actual).forall(t => t._1 == t._2), "Lists have different elements")
   }
 }

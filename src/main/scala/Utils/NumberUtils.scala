@@ -1,5 +1,7 @@
 package Utils
 
+import scala.annotation.tailrec
+
 object NumberUtils {
   def isPrime(n: Int): Boolean = {
     if (n <= 1) return false
@@ -27,4 +29,16 @@ object NumberUtils {
       if a * a + b * b == c * c
     } yield (a, b, c)
   }.toList
+
+  def primeFactorization(n: Int): List[Int] = {
+    def primeFactors(x: Int, factors: List[Int]): List[Int] = {
+      if (isPrime(x)) x :: factors
+      else {
+        val nextFactor = (2 to x).find(x % _ == 0).get
+        primeFactors(x / nextFactor, nextFactor :: factors)
+      }
+    }
+
+    primeFactors(n, Nil)
+  }
 }
