@@ -1,7 +1,5 @@
 package Utils
 
-import scala.annotation.tailrec
-
 object NumberUtils {
   def isPrime(n: Int): Boolean = {
     if (n <= 1) return false
@@ -40,5 +38,23 @@ object NumberUtils {
     }
 
     primeFactors(n, Nil)
+  }
+
+  def toRoman(num: Int): String = {
+    val numerals = List(
+      (1000, "M"), (900, "CM"), (500, "D"), (400, "CD"),
+      (100, "C"), (90, "XC"), (50, "L"), (40, "XL"),
+      (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")
+    )
+
+    def convert(remaining: Int, result: String): String = {
+      if (remaining == 0) result
+      else {
+        val (arabic, roman) = numerals.find { case (arabic, roman) => arabic <= remaining }.get
+        convert(remaining - arabic, result + roman)
+      }
+    }
+
+    convert(num, "")
   }
 }
