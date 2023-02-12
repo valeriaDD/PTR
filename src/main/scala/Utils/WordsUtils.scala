@@ -14,6 +14,7 @@ object WordsUtils {
 
     words.filter { word =>
       val lowerCaseWord = word.toLowerCase()
+
       lowerCaseWord.forall(c => row1.contains(c)) ||
         lowerCaseWord.forall(c => row2.contains(c)) ||
         lowerCaseWord.forall(c => row3.contains(c))
@@ -34,7 +35,7 @@ object WordsUtils {
 
     def helper(digits: List[Char], current: String, result: List[String]): List[String] = {
       if (digits.isEmpty) {
-        return result :+ current
+        return result :+ current // push to end
       }
       val letters = digitMap(digits.head)
 
@@ -51,7 +52,7 @@ object WordsUtils {
 
   def groupAnagrams(words: Array[String]): List[Array[String]] = {
     val map = words.groupBy(_.sorted)
-    map.foreach(kv => println(s"${kv._1}: ${kv._2.mkString(", ")}"))
+    map.foreach(kv => println(s"${kv._1}: ${kv._2.mkString(", ")}")) // just to print
     map.values.toList
   }
 }

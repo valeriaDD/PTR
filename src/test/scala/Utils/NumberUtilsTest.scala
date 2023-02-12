@@ -49,4 +49,13 @@ class NumberUtilsTest extends AnyFunSuite {
     assert(expected.size == actual.size, "Lists have different sizes")
     assert(expected.zip(actual).forall(t => t._1 == t._2), "Lists have different elements")
   }
+
+  test("Convert arabic 13 to romans") {
+    val numbers = 999
+    val expected = "CMXCIX"
+
+    val actual = NumberUtils.toRoman(999)
+
+    assert(expected == actual)
+  }
 }

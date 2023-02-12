@@ -13,7 +13,7 @@ object NumberUtils {
     var digits = List(a, b, c).sorted
 
     if (digits.head == 0) {
-      digits = digits.updated(0, digits(1)).updated(1, digits.head)
+      digits = digits.updated(0, digits(1)).updated(1, digits.head) // swap
     }
 
     100 * digits.head + 10 * digits(1) + digits(2)
@@ -50,7 +50,10 @@ object NumberUtils {
     def convert(remaining: Int, result: String): String = {
       if (remaining == 0) result
       else {
-        val (arabic, roman) = numerals.find { case (arabic, roman) => arabic <= remaining }.get
+        val (arabic, roman) = numerals.find {
+          case (arabic, roman) => arabic <= remaining
+        }.get
+
         convert(remaining - arabic, result + roman)
       }
     }
