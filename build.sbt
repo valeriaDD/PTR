@@ -4,6 +4,7 @@ ThisBuild / scalaVersion := "2.13.10"
 
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.15"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test"
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.7.0"
 
 lazy val root = (project in file("."))
   .settings(
