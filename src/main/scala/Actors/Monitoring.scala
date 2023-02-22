@@ -7,7 +7,6 @@ class MonitoredActor extends Actor {
     case _ => println("I received a message")
   }
 }
-
 class MonitoredActorParent extends Actor{
   private val Johny = context.actorOf(Props[MonitoredActor], name = "Johny")
   context.watch(Johny)
@@ -22,7 +21,7 @@ object Monitoring extends App {
   private val actorSystem = ActorSystem("ActorSystem")
 
   // Watcher
-  private val parentActor = actorSystem.actorOf(Props[MonitoredActorParent], "Parent")
+  actorSystem.actorOf(Props[MonitoredActorParent], "Parent")
   private val childActor = actorSystem.actorSelection("/user/Parent/Johny")
   childActor ! "Some text"
   childActor ! PoisonPill

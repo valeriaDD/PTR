@@ -11,7 +11,7 @@ class AccumulatorActor extends Actor {
     case number: Int =>
       sum += number
       count += 1
-      println("Average: " + (sum/count))
+      println("Average: " + (sum.toDouble/count.toDouble))
 
     case _ =>
       println("I dont know how to process it")
@@ -23,9 +23,11 @@ object AccumulatorActor extends App {
 
   private val parentActor = actorSystem.actorOf(Props[AccumulatorActor], "accumulator")
 
-  parentActor ! 5
-  parentActor ! 22
-  parentActor ! 2
+  parentActor ! 0
+  parentActor ! 10
+  parentActor ! "text"
+  parentActor ! 10
+  parentActor ! 10
 
   actorSystem.terminate()
 }
