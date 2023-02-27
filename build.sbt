@@ -9,10 +9,17 @@ libraryDependencies += "com.typesafe.akka" %% "akka-testkit" % "2.7.0" % Test
 libraryDependencies += "com.typesafe.akka" %% "akka-http" % "10.5.0"
 libraryDependencies += "com.typesafe.akka" %% "akka-stream" % "2.7.0"
 libraryDependencies += "io.spray" %%  "spray-json" % "1.3.6"
-libraryDependencies += "org.http4s" %% "http4s-b1aze-server" % "1.0.0-M21"
-libraryDependencies += "org.http4s" %% "http4s-circe" % "1.0.0-M21"
-libraryDependencies += "org.http4s" %% "http4s-dsI" % "1.0.0-M21"
-libraryDependencies += "io.circle" %% "circle-generic" % "0.14.0-M5"
+
+// libraries for REST-full API
+
+val Http4sVersion = "1.0.0-M21"
+val CirceVersion = "0.14.0-M5"
+libraryDependencies ++= Seq(
+  "org.http4s"      %% "http4s-blaze-server" % Http4sVersion,
+  "org.http4s"      %% "http4s-circe"        % Http4sVersion,
+  "org.http4s"      %% "http4s-dsl"          % Http4sVersion,
+  "io.circe"        %% "circe-generic"       % CirceVersion,
+)
 
 lazy val root = (project in file("."))
   .settings(
