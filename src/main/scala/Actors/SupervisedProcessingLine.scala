@@ -28,7 +28,6 @@ class Supervisor extends Actor {
     case StartProcessing(msg) => splitter ! ProcessInput(msg)
     case SplitResult(msg) => spawner ! ProcessInput(msg)
     case SpawnedResult(msg) => joiner ! ProcessInput(msg)
-    case SpawnedResult(msg) => joiner ! ProcessInput(msg)
     case JoinedResult(msg) => printer ! ProcessInput(msg)
   }
 

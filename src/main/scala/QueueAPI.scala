@@ -50,5 +50,4 @@ object QueueApp extends App {
   pop(queueActor);
   pop(queueActor);
   pop(queueActor);
-
 }

@@ -44,9 +44,10 @@ object RestfullAPI extends IOApp {
 
   object IdQueryParamMatcher extends QueryParamDecoderMatcher[Int]("id")
 
-  def movieRoutes[F[_] : Monad]: HttpRoutes[F] = {
+  private def movieRoutes[F[_] : Concurrent]: HttpRoutes[F] = {
     val dsl = Http4sDsl[F]
     import dsl._
+    implicit val movieDecoder: EntityDecoder[F, Movie] = jsonOf[F, Movie]
 
     HttpRoutes.of[F] {
       case GET -> Root / "movies" =>
@@ -64,6 +65,21 @@ object RestfullAPI extends IOApp {
             Ok()
           case _ => NotFound("Not found")
         }
+
+//      case req@POST -> Root / "movies" =>
+//        val content = req.body
+//        val jsonObject = content.asJson
+//
+//        moviesDB.put(
+//          moviesDB.size + 1,
+//          Movie(
+//            moviesDB.size + 1,
+//            jsonObject.asInstanceOf[Map[String, Any]].apply("title").toString,
+//            jsonObject.asInstanceOf[Map[String, Any]].apply("title").toString,
+//            jsonObject.asInstanceOf[Map[String, Any]].apply("title").toString,
+//          )
+//        )
+//        Ok()
 
       //      case req@PUT -> Root / "movies" /:? IdQueryParamMatcher("id") => ???
       //      case req@PATCH -> Root / "movies" /:? IdQueryParamMatcher("id") => ???
